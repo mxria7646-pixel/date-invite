@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Date Invitation! 💖</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Press Start 2P', cursive;
+        background: linear-gradient(135deg, #ffd1dc, #ffe8d6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    h1 {
+        color: #ff69b4;
+        text-shadow: 2px 2px #fff;
+        font-size: 2em;
+        text-align: center;
+        margin-top: 20px;
+        animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    .heart {
+        color: #ff69b4;
+        font-size: 1.5em;
+        animation: float 3s ease-in-out infinite;
+        position: absolute;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(15deg); }
+        100% { transform: translateY(0) rotate(-15deg); }
+    }
+
+    .buttons {
+        margin: 20px;
+        display: flex;
+        gap: 20px;
+    }
+
+    .yes-btn {
+        background: #ffb6c1;
+        border: 2px solid #ff69b4;
+        padding: 15px 30px;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 1em;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.2s, background 0.2s;
+    }
+
+    .yes-btn:hover {
+        transform: scale(1.1);
+        background: #ff69b4;
+    }
+
+    .details {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 400px;
+        text-align: left;
+        font-size: 0.9em;
+        color: #ff69b4;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    .details span {
+        font-weight: bold;
+    }
+
+    /* Heart pop animation */
+    .pop-heart {
+        position: absolute;
+        font-size: 2em;
+        color: #ff69b4;
+        animation: pop 0.6s forwards;
+        pointer-events: none;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0); opacity: 1; }
+        50% { transform: scale(1.3); opacity: 1; }
+        100% { transform: scale(1); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Will you go on a date with me? 💖</h1>
+
+<div class="buttons">
+    <button class="yes-btn">Yes ❤️</button>
+    <button class="yes-btn">Yes ❤️</button>
+</div>
+
+<div class="details">
+    <p><span>Study Date Invitation!</span></p>
+    <p><span>Location:</span> Thode Library, Group Study Room 08</p>
+    <p><span>Date:</span> Tuesday, February 3, 2026</p>
+    <p><span>Time:</span> 5:30pm - 7:30pm for the room, 1:30pm for Study Session prior &lt;3</p>
+    <p><span>Menu:</span> Hot and Juicy Burgers 🍔 AND/OR Ramen 🍜, drink of choice!</p>
+    <p><span>Dessert:</span> You &lt;3 (Frozen yogurt 🍨)</p>
+</div>
+
+<audio id="chime" src="https://freesound.org/data/previews/341/341695_6242613-lq.mp3"></audio>
+
+<script>
+    const buttons = document.querySelectorAll('.yes-btn');
+    const chime = document.getElementById('chime');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Play sound
+            chime.currentTime = 0;
+            chime.play();
+
+            // Create floating heart
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.className = 'pop-heart';
+            document.body.appendChild(heart);
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            setTimeout(() => heart.remove(), 600);
+        });
+    });
+
+    // Generate random floating hearts in the background
+    function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.textContent = '💖';
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = Math.random() * window.innerHeight + 'px';
+        heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createFloatingHeart, 800);
+</script>
+
+</body>
+</html>
